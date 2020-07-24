@@ -1,8 +1,8 @@
-const momngoose = require('mongoose');
+const mongoose = require('mongoose');
 
 
 
-const userSchema = new momngoose.Schema(
+const userSchema = new mongoose.Schema(
     {
         name: {
             type: String,

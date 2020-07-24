@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const userModel = require('../model/user');
 
 
 
@@ -11,6 +12,28 @@ const router = express.Router();
 // @access public
 
 router.post('/register', (req, res) => {
+
+    
+    const newUser = new userModel({
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password
+    });
+
+    newUser
+        .save()
+        .then(user => {
+            res.json({
+                message: "register success",
+                userInfo: user
+            });
+        })
+        .catch(err => {
+            res.json({
+                err: err.message
+            });
+        });
+
 
 });
 
