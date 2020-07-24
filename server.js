@@ -7,6 +7,9 @@ dotenv.config();
 
 const app = express();
 
+const userRouter = require('./routes/user');
+
+
 // 데이터베이스 연결
 require('./config/db');
 
@@ -16,6 +19,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+
 
 
 
@@ -35,6 +39,10 @@ app.use(async function (err, req, res, next) {
     next();
 });
 
+
+//라우팅
+
+app.use('/users', userRouter);
 
 
 const PORT = process.env.PORT || 7000;
